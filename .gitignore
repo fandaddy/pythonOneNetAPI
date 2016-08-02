@@ -1,5 +1,7 @@
 # python:
 *.py[cod]
 test*.py
+*.swp
 
+#files
 test
