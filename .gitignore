@@ -1,0 +1,5 @@
+# python:
+*.py[cod]
+test*.py
+
+test
