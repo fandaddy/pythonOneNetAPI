@@ -24,20 +24,6 @@ class OneNetApi():
 
     def paddingUrl(self, url):
         return base_url + url
-
-    # 设备相关API
-    def device_add(self):
-        print "先空着"
-
-    def device_del():
-        print "先空着"
-
-    # 数据流相关API
-    def set_devid(self, device_id):
-        self.__device_id = device_id
-
-    #def datastream(self):
-        #api = "/devices/{device_id}/datapoints?type=3".format(device_id = self.__device_id)
     
     def _call(self, url, method, jdata = None, params = None):
         url = self.paddingUrl(url)
@@ -51,6 +37,31 @@ class OneNetApi():
         if method == 'GET':
             res = s.get(url, headers = self.header, params = params)
         return res
+
+    
+    ##### 设备相关操作 #######
+    # 新增设备
+    def device_add(self, title = None, desc = None, tags = None, location = None, private = 'true', protocol = 'HTTP'):
+        api = base_url+'/devices'
+        values = {}
+        if title == None:
+            return 0
+        else:
+            values['title'] = title
+        if desc == None:
+            values['desc'] = 'no description'
+        else:
+            values['desc'] = desc
+        if tags != None:
+            values['tags'] = tags
+        if location != None:
+            values['location'] = location
+        values['private'] = private
+        values['protocol'] = protocol
+        jdata = json.dumps(values)
+        api = "/devices"
+        return self._call(api, 'POST', jdata)
+
 
     # 数据点操作
     # 增加数据点
