@@ -8,15 +8,27 @@ if __name__ == '__main__':
     test = OneNetApi("Ur api key")
 
     # 添加设备
-    title = "test11"
-    desc = "testing"
-    tags = ["test1", "test2"]
-    private = "false"
-    res1 = test.device_add(title = title, desc = desc, tags = tags, private = private)
-    print res1.content
+    #title = "test11"
+    #desc = "testing"
+    #tags = ["test1", "test2"]
+    #private = "false"
+    #res1 = test.device_add(title = title, desc = desc, tags = tags, private = private)
+    #print res1.content
+
+    # 更新设备
+    #device_id = **********
+    #title = "test_abs"
+    #private = 'true'
+    #res2 = test.device_update(device_id = device_id, title = title, private = private)
+    #print res2.content
+
+    # 查询设备
+    device_id = ********
+    res3 = test.device_info(device_id = device_id)
+    print res3.content
 
     # 添加数据
-    #device_id = *****
+    #device_id = ********
     #无名参数要放在keyword前面
     #res1 = test.datapoint_add(device_id, 'temperature', 70)
     #print res1.content

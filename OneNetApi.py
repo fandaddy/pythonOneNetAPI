@@ -33,16 +33,17 @@ class OneNetApi():
                 res = s.post(url, data = jdata, headers = self.header)
             else:
                 res = s.post(url, headers = self.header)
-
         if method == 'GET':
             res = s.get(url, headers = self.header, params = params)
+        if method == 'PUT':
+            res = s.put(url, headers = self.header, data = jdata)
+
         return res
 
     
     ##### 设备相关操作 #######
     # 新增设备
     def device_add(self, title = None, desc = None, tags = None, location = None, private = 'true', protocol = 'HTTP'):
-        api = base_url+'/devices'
         values = {}
         if title == None:
             return 0
@@ -61,6 +62,32 @@ class OneNetApi():
         jdata = json.dumps(values)
         api = "/devices"
         return self._call(api, 'POST', jdata)
+    
+    #更新设备信息
+    def device_update(self, device_id = None, title = None, desc = None, private = 'true', tags = None, location = None):
+        values = {}
+        if device_id == None:
+            return 0
+        api = "/devices/{device_id}".format(device_id = device_id)
+        if title != None:
+            values['title'] = title
+        if desc != None:
+            values['desc'] = desc
+        if private != None:
+            values['private'] = private
+        if tags != None:
+            values['tags'] = tags
+        if location != None:
+            values['location'] = location
+        jdata = json.dumps(values)
+        return self._call(api, 'PUT', jdata) 
+    
+    #查找单个设备信息
+    def device_info(self, device_id = None):
+        if device_id == None:
+            return 0
+        api = "/devices/{device_id}".format(device_id = device_id)
+        return self._call(api, 'GET')
 
 
     # 数据点操作
