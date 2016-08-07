@@ -37,6 +37,8 @@ class OneNetApi():
             res = s.get(url, headers = self.header, params = params)
         if method == 'PUT':
             res = s.put(url, headers = self.header, data = jdata)
+        if method == 'DELETE':
+            res = s.delete(url, headers = self.header)
 
         return res
 
@@ -82,13 +84,19 @@ class OneNetApi():
         jdata = json.dumps(values)
         return self._call(api, 'PUT', jdata) 
     
-    #查找单个设备信息
+    # 查找单个设备信息
     def device_info(self, device_id = None):
         if device_id == None:
             return 0
         api = "/devices/{device_id}".format(device_id = device_id)
         return self._call(api, 'GET')
 
+    # 删除单个设备
+    def device_del(self, device_id = None):
+        if device_id == None:
+            return 0
+        api = "/devices/{device_id}".format(device_id = device_id)
+        return self._call(api, 'DELETE')
 
     # 数据点操作
     # 增加数据点

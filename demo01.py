@@ -16,19 +16,24 @@ if __name__ == '__main__':
     #print res1.content
 
     # 更新设备
-    #device_id = **********
+    #device_id = *******
     #title = "test_abs"
     #private = 'true'
     #res2 = test.device_update(device_id = device_id, title = title, private = private)
     #print res2.content
 
     # 查询设备
-    device_id = ********
-    res3 = test.device_info(device_id = device_id)
-    print res3.content
+    #device_id = *******
+    #res3 = test.device_info(device_id = device_id)
+    #print res3.content
+
+    # 删除设备
+    device_id = *******
+    res4 = test.device_del(device_id = device_id)
+    print res4.content
 
     # 添加数据
-    #device_id = ********
+    #device_id = *******
     #无名参数要放在keyword前面
     #res1 = test.datapoint_add(device_id, 'temperature', 70)
     #print res1.content
