@@ -232,3 +232,15 @@ class OneNetApi():
             params['per_page'] = per_page
         return self._call(api, "GET", params = params)
 
+
+    ############ API权限 ###############
+    def api_add(self, dev_id = None, title = None):
+        if dev_id == None or title == None:
+            return 0
+        values = {}
+        values = {"title":title, "permissions":[{"resources":[{"dev_id":dev_id}]}]}
+        jdata = json.dumps(values)
+        #print jdata
+        api = "/keys"
+        return self._call(api, "POST", jdata = jdata)
+

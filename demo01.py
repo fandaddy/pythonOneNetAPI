@@ -16,7 +16,7 @@ if __name__ == '__main__':
     #print res1.content
 
     # 更新设备
-    #device_id = **********
+    #device_id = ******
     #title = "test_abs"
     #private = 'true'
     #res2 = test.device_update(device_id = device_id, title = title, private = private)
@@ -33,43 +33,47 @@ if __name__ == '__main__':
     #print res4.content
 
     # 添加数据流
-    #device_id = ********
+    #device_id = *******
     #res1 = test.datastream_add(device_id = device_id, datastream_id = 'test1')
     #print res1.content
 
     # 更新数据流
-    #device_id = *********
+    #device_id = ******
     #res2 = test.datastream_update(device_id = device_id, datastream_id = 'test1',datastream = {"tags":["test1","test2"], "unit":"Celsius"})
     #print res2.content
 
     # 删除数据流
-    #device_id = *********
+    #device_id = ******
     #res3 = test.datastream_del(device_id = device_id, datastream_id = 'test1')
     #print res3.content
 
     # 增加触发器
-    #device_id = *******
+    #device_id = ******
     #trigger = {"ds_id": "test1", "url": "http://xx.bb.com", "type":">=", "threshold":100}
     #res1 = test.trigger_add(trigger = trigger)
     #print res1.content
 
     # 更新触发器
-    #trigger_id = ******
+    #trigger_id = *****
     #trigger = {"ds_id":"test1","title":"wen du jian kong", "url":"http://cc.bb.com", "type":"<", "threshold":60}
     #res2 = test.trigger_update(trigger_id = trigger_id, trigger = trigger)
     #print res2.content
 
     # 删除触发器
+    #trigger_id = *****
+    #res3 = test.trigger_del(trigger_id = trigger_id)
+    #print res3.content
 
     # 查看触发器
-    title = "wen du jian kong"
-    page = 1
-    per_page = 10
-    res4 = test.trigger_list(title = title, page = page, per_page = 10)
-    print res4.content
+    #title = "wen du jian kong"
+    #page = 1
+    #per_page = 10
+    #res4 = test.trigger_list(title = title, page = page, per_page = 10)
+    #print res4.content
 
+    ######### 数据点操作 ############
     # 添加数据
-    #device_id = *******
+    #device_id = ******
     #无名参数要放在keyword前面
     #res1 = test.datapoint_add(device_id, 'temperature', 70)
     #print res1.content
@@ -85,4 +89,10 @@ if __name__ == '__main__':
     #limit = 100
     #res3 = test.datapoint_multi_get(device_id = device_id, start_time = start_time, end_time = end_time, limit = limit, datastream_ids = datastream_ids)
     #print res3.content
+
+    ############# API操作  ##############
+    title = "sharing key"
+    dev_id = "*******" #这里是字符串
+    res1 = test.api_add(dev_id = dev_id, title = title)
+    print res1.content
 
