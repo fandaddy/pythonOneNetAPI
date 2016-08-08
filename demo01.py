@@ -11,25 +11,61 @@ if __name__ == '__main__':
     #title = "test11"
     #desc = "testing"
     #tags = ["test1", "test2"]
-    #private = "false"
+    #private = "true"
     #res1 = test.device_add(title = title, desc = desc, tags = tags, private = private)
     #print res1.content
 
     # 更新设备
-    #device_id = *******
+    #device_id = **********
     #title = "test_abs"
     #private = 'true'
     #res2 = test.device_update(device_id = device_id, title = title, private = private)
     #print res2.content
 
     # 查询设备
-    #device_id = *******
+    #device_id = **********
     #res3 = test.device_info(device_id = device_id)
     #print res3.content
 
     # 删除设备
-    device_id = *******
-    res4 = test.device_del(device_id = device_id)
+    #device_id = *********
+    #res4 = test.device_del(device_id = device_id)
+    #print res4.content
+
+    # 添加数据流
+    #device_id = ********
+    #res1 = test.datastream_add(device_id = device_id, datastream_id = 'test1')
+    #print res1.content
+
+    # 更新数据流
+    #device_id = *********
+    #res2 = test.datastream_update(device_id = device_id, datastream_id = 'test1',datastream = {"tags":["test1","test2"], "unit":"Celsius"})
+    #print res2.content
+
+    # 删除数据流
+    #device_id = *********
+    #res3 = test.datastream_del(device_id = device_id, datastream_id = 'test1')
+    #print res3.content
+
+    # 增加触发器
+    #device_id = *******
+    #trigger = {"ds_id": "test1", "url": "http://xx.bb.com", "type":">=", "threshold":100}
+    #res1 = test.trigger_add(trigger = trigger)
+    #print res1.content
+
+    # 更新触发器
+    #trigger_id = ******
+    #trigger = {"ds_id":"test1","title":"wen du jian kong", "url":"http://cc.bb.com", "type":"<", "threshold":60}
+    #res2 = test.trigger_update(trigger_id = trigger_id, trigger = trigger)
+    #print res2.content
+
+    # 删除触发器
+
+    # 查看触发器
+    title = "wen du jian kong"
+    page = 1
+    per_page = 10
+    res4 = test.trigger_list(title = title, page = page, per_page = 10)
     print res4.content
 
     # 添加数据
