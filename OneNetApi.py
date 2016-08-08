@@ -99,7 +99,7 @@ class OneNetApi():
         api = "/devices/{device_id}".format(device_id = device_id)
         return self._call(api, 'DELETE')
 
-    # 数据流操作
+    ######### 数据流操作 ###############
     # 数据流新增
     def datastream_add(self, device_id = None, datastream_id = None):
         if device_id == None or datastream_id == None:
@@ -118,9 +118,14 @@ class OneNetApi():
         api = api + datastream_id
         jdata = json.dumps(datastream)
         return self._call(api, 'PUT', jdata = jdata)
-        
 
-    # 数据点操作
+    def datastream_del(self, device_id = None, datastream_id = None):
+        if device_id == None or datastream_id == None:
+            return 0
+        api = "/devices/{device_id}/datastreams/".format(device_id = device_id) + datastream_id
+        return self._call(api, 'DELETE')
+
+    ############## 数据点操作 #################
     # 增加数据点
     def datapoint_add(self, device_id = None, datastream_id = None, datas = None):
         if(datas == None):
@@ -166,7 +171,7 @@ class OneNetApi():
     def datapoint_multi_get(self, device_id = None, start_time = None, end_time = None, limit = None, cursor = None, datastream_ids = None):
         params = {}
         if device_id == None:
-            return -1
+            return 0
         if datastream_ids != None:
             if type(datastream_ids) == list:
                 datastream_ids = ",".join(datastream_ids)
@@ -189,4 +194,41 @@ class OneNetApi():
         api = "/devices/{device_id}/datapoints?".format(device_id = device_id);
         return self._call(api, "GET", params = params)
 
+    ########### 触发器操作 #############
+    # 触发器添加
+    def trigger_add(self, trigger = None):
+        if trigger == None:
+            return 0
+        api = "/triggers"
+        jdata = json.dumps(trigger)
+        # print jdata
+        return self._call(api, 'POST', jdata = jdata)
+
+    # 触发器更新
+    def trigger_update(self, trigger_id = None, trigger = None):
+        if trigger_id == None or trigger == None:
+            return 0
+        api = "/triggers/{trigger_id}".format(trigger_id = trigger_id)
+        jdata = json.dumps(trigger)
+        return self._call(api, 'PUT', jdata = jdata)
+
+    # 触发器删除
+    def trigger_del(self, trigger_id = None):
+        if trigger_id == None:
+            return 0
+        api = "/triggers/{trigger_id}".format(trigger_id = trigger_id)
+        return self._call(api, 'DELETE')
+
+    # 触发器查看
+    def trigger_list(self, page = None, per_page = None, title = None):
+        if title == None:
+            return 0
+        api = "/triggers"
+        params = {}
+        params['title'] = title
+        if page != None:
+            params['page'] = page
+        if per_page != None:
+            params['per_page'] = per_page
+        return self._call(api, "GET", params = params)
 
