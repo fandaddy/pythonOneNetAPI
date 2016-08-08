@@ -27,10 +27,11 @@ class OneNetApi():
     
     def _call(self, url, method, jdata = None, params = None):
         url = self.paddingUrl(url)
+        print url
         s = requests.session()
         if method == 'POST':
             if jdata != None:
-                res = s.post(url, data = jdata, headers = self.header)
+                res = s.post(url, headers = self.header, data = jdata)
             else:
                 res = s.post(url, headers = self.header)
         if method == 'GET':
@@ -97,6 +98,18 @@ class OneNetApi():
             return 0
         api = "/devices/{device_id}".format(device_id = device_id)
         return self._call(api, 'DELETE')
+
+    # 数据流操作
+    # 数据流新增
+    def datastream_add(self, device_id = None, datastream_id = None):
+        if device_id == None or datastream_id == None:
+            return 0
+        api = "/devices/{device_id}/datastreams".format(device_id = device_id)
+        values = {}
+        values['id'] = datastream_id
+        jdata = json.dumps(values)
+        #print jdata
+        return self._call(api, 'POST', jdata)
 
     # 数据点操作
     # 增加数据点
