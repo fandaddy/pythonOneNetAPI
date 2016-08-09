@@ -16,19 +16,19 @@ if __name__ == '__main__':
     #print res1.content
 
     # 更新设备
-    #device_id = ******
+    #device_id = *******
     #title = "test_abs"
     #private = 'true'
     #res2 = test.device_update(device_id = device_id, title = title, private = private)
     #print res2.content
 
     # 查询设备
-    #device_id = **********
+    #device_id = *******
     #res3 = test.device_info(device_id = device_id)
     #print res3.content
 
     # 删除设备
-    #device_id = *********
+    #device_id = *******
     #res4 = test.device_del(device_id = device_id)
     #print res4.content
 
@@ -38,17 +38,17 @@ if __name__ == '__main__':
     #print res1.content
 
     # 更新数据流
-    #device_id = ******
+    #device_id = *******
     #res2 = test.datastream_update(device_id = device_id, datastream_id = 'test1',datastream = {"tags":["test1","test2"], "unit":"Celsius"})
     #print res2.content
 
     # 删除数据流
-    #device_id = ******
+    #device_id = *******
     #res3 = test.datastream_del(device_id = device_id, datastream_id = 'test1')
     #print res3.content
 
     # 增加触发器
-    #device_id = ******
+    #device_id = *******
     #trigger = {"ds_id": "test1", "url": "http://xx.bb.com", "type":">=", "threshold":100}
     #res1 = test.trigger_add(trigger = trigger)
     #print res1.content
@@ -73,7 +73,7 @@ if __name__ == '__main__':
 
     ######### 数据点操作 ############
     # 添加数据
-    #device_id = ******
+    #device_id = *******
     #无名参数要放在keyword前面
     #res1 = test.datapoint_add(device_id, 'temperature', 70)
     #print res1.content
@@ -91,8 +91,29 @@ if __name__ == '__main__':
     #print res3.content
 
     ############# API操作  ##############
-    title = "sharing key"
-    dev_id = "*******" #这里是字符串
-    res1 = test.api_add(dev_id = dev_id, title = title)
-    print res1.content
+    # 添加api-key
+    #title = "sharing key"
+    #dev_id = "*******"
+    #res1 = test.apikey_add(dev_id = dev_id, title = title)
+    #print res1.content
+
+    # 更新api-key
+    #key = "Ur api key"
+    #title = "sharing key1"
+    #resources = {"dev_id":"*******"}
+    #res2 = test.apikey_update(key = key, title = title, resources = resources)
+    #print res2.content
+
+    # 查看api-key
+    #key = "Ur api key"
+    #device_id = *******
+    #res3 = test.apikey_list(key = key, device_id = device_id)
+    #print res3.content
+
+    # 删除api-key
+    #key = "Ur api key"
+    #res4 = test.apikey_del(key = key)
+    #print res4.content
+
+
 

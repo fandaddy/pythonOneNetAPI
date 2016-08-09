@@ -234,7 +234,8 @@ class OneNetApi():
 
 
     ############ API权限 ###############
-    def api_add(self, dev_id = None, title = None):
+    # 添加API-KEY
+    def apikey_add(self, dev_id = None, title = None):
         if dev_id == None or title == None:
             return 0
         values = {}
@@ -243,4 +244,37 @@ class OneNetApi():
         #print jdata
         api = "/keys"
         return self._call(api, "POST", jdata = jdata)
+
+    # 更新API-KEY
+    def apikey_update(self, key = None, title = None, resources = None):
+        if key == None:
+            return 0
+        values = {"title":title, "permissions":[{"resources":[resources]}]}
+        jdata = json.dumps(values)
+        api = "/keys/" + key
+        return self._call(api, 'PUT', jdata = jdata)
+
+    # 查看API-KEY
+    def apikey_list(self, key = None, page = None, per_page = None, device_id = None):
+        api = "/keys"
+        params = {}
+        if key != None:
+            params['key'] = key
+        if page != None:
+            params['page'] = page
+        if per_page != None:
+            params['per_page'] = per_page
+        if device_id != None:
+            params['device_id'] = device_id
+        if key != None or page != None or per_page != None or device_id != None:
+            return self._call(api, 'GET', params = params)
+        else:
+            return self._call(api, 'GET')
+    
+    # 删除API-KEY
+    def apikey_del(self, key = None):
+        if key == None:
+            return 0
+        api = "/keys/" + key
+        return self._call(api, 'DELETE')
 
